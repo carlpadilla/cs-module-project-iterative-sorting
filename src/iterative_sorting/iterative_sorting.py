@@ -37,6 +37,21 @@ def bubble_sort(arr):
     return arr
 
 
+# TO-DO:  implement the Bubble Sort function below
+# def bubble_sort(arr):
+#     # Set incoming array to a variable for DRY code
+#     init = range(len(arr) - 1)
+#     # Tells second loop where to start at, runs for each value in the list
+#     for i in init:
+#         # Starts at 0
+#         for j in init:
+#             # Compare values
+#             if arr[j] > arr[j+1]:
+#                 # Perform the swap
+#                 arr[j], arr[j+1] = arr[j+1], arr[j]
+#     return arr
+
+
 '''
 STRETCH: implement the Count Sort function below
 
@@ -56,7 +71,23 @@ What is the time and space complexity of the counting sort algorithm?
 '''
 
 
-def counting_sort(arr, maximum=None):
+def counting_sort(arr, maximum=-1):
     # Your code here
+    if len(arr) == 0:
+        return arr
+    if maximum == -1:
+        maximum = max(arr)
+    counts = [0] * (maximum + 1)
+
+    for value in arr:
+        if value < 0:
+            return "Error, negative numbers not allowed in Count Sort"
+        counts[value] += 1
+    j = 0
+    for i in range(0, len(counts)):
+        while counts[i] > 0:
+            arr[j] = i
+            j += 1
+            counts[i] -= 1
 
     return arr
